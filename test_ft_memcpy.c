@@ -14,20 +14,25 @@
 #include <stdio.h>
 #include <string.h>
 #define MAX_LEN 80
- 
-char source[ MAX_LEN ] = "This is the source string";
-char target[ MAX_LEN ] = "This is the target string";
-char ft_source[ MAX_LEN ] = "This is the ft_source string";
-char ft_target[ MAX_LEN ] = "This is the ft_target string";
- 
-void test_ft_memcpy(void)
+
+int test_ft_memcpy(void)
 {
-  printf( "BEGIN TEST - ft_memcpy.c\n");
-  printf( "\tBefore memcpy, target is \"%s\"\n", target );
-  memcpy( target, source, sizeof(source));
-  printf( "\tAfter memcpy, target becomes \"%s\"\n", target );
-  printf( "\tBefore ft_memcpy, target is \"%s\"\n", ft_target );
-  ft_memcpy( ft_target, ft_source, sizeof(ft_source));
-  printf( "\tAfter ft_memcpy, target becomes \"%s\"\n", ft_target );
-  printf( "END TEST\n");
+	char source[MAX_LEN] = "This is the source string";
+
+	char target_libc[MAX_LEN] = "This is the target string";
+	char target_ft[MAX_LEN] = "This is the target string";
+
+	memcpy(target_libc, source, sizeof(source));
+
+	ft_memcpy(target_ft, source, sizeof(source));
+
+	if (memcmp(target_libc, target_ft, sizeof(source)) != 0)
+	{
+		printf("ft_memcpy differs from memcpy.\n");
+		printf("\tAfter memcpy: \"%s\"\n", target_libc);
+		printf("\tAfter ft_memcpy: \"%s\"\n", target_ft);
+		return 1;
+	}
+
+	return 0;
 }
