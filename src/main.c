@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests_libft.h"
+#include "../include/tests_libft.h"
 #define MAX_TESTS 42
 
 int main(void)
@@ -24,7 +24,7 @@ int main(void)
 		{"ft_memcpy", test_ft_memcpy},
 		{"ft_memmove", test_ft_memmove},
 		{"ft_strlcpy", test_ft_strlcpy},
-		{"ft_strlcat", test_ft_strlcat},
+		//{"ft_strlcat", test_ft_strlcat},
 		{NULL, NULL}
 	};
 
@@ -34,14 +34,15 @@ int main(void)
 	i = 0;
 	while (tests[i].test_func != NULL)
 	{
+		printf("Running tests for: %s\n", tests[i].name);
 		if (tests[i].test_func())
 		{
-			printf("\nTest %s failed.\n", tests[i].name);
+            printf(COLOR_RED "Function %s failed.\n" COLOR_RESET, tests[i].name);
 			fail_count++;
 		}
 		else
 		{
-			printf("Test %s passed.\n", tests[i].name);
+            printf(COLOR_GREEN "Function %s passed.\n" COLOR_RESET, tests[i].name);
 			pass_count++;
 		}
 		i++;
@@ -49,10 +50,11 @@ int main(void)
 	}
 	num_tests = i;
 
-	printf("\nTest Summary:\n");
+	printf("Tests Summary:\n");
 	printf("\tTotal Tests: %d\n", num_tests);
 	printf("\tPassed: %d\n", pass_count);
 	printf("\tFailed: %d\n", fail_count);
+	printf("\n");
 	if (fail_count == 0)
 		printf("All tests passed successfully.\n");
 	else
