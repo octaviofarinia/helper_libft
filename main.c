@@ -6,19 +6,13 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:57:25 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/21 19:01:13 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/22 13:32:40 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests_libft.h"
 #define NULL 0
 #define MAX_TESTS 42
-
-typedef struct s_test
-{
-	const char *name;
-	int (*test_func)(void);
-} t_test;
 
 int main(void)
 {
