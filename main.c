@@ -6,12 +6,11 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:57:25 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/22 13:32:40 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/22 15:40:52 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests_libft.h"
-#define NULL 0
 #define MAX_TESTS 42
 
 int main(void)
@@ -23,6 +22,9 @@ int main(void)
 
 	t_test tests[MAX_TESTS] = {
 		{"ft_memcpy", test_ft_memcpy},
+		{"ft_memmove", test_ft_memmove},
+		{"ft_strlcpy", test_ft_strlcpy},
+		{"ft_strlcat", test_ft_strlcat},
 		{NULL, NULL}
 	};
 
@@ -34,7 +36,7 @@ int main(void)
 	{
 		if (tests[i].test_func())
 		{
-			printf("Test %s failed.\n", tests[i].name);
+			printf("\nTest %s failed.\n", tests[i].name);
 			fail_count++;
 		}
 		else
@@ -43,13 +45,14 @@ int main(void)
 			pass_count++;
 		}
 		i++;
+		printf("--------------------------------------\n");
 	}
 	num_tests = i;
 
 	printf("\nTest Summary:\n");
-	printf("Total Tests: %d\n", num_tests);
-	printf("Passed: %d\n", pass_count);
-	printf("Failed: %d\n", fail_count);
+	printf("\tTotal Tests: %d\n", num_tests);
+	printf("\tPassed: %d\n", pass_count);
+	printf("\tFailed: %d\n", fail_count);
 	if (fail_count == 0)
 		printf("All tests passed successfully.\n");
 	else
