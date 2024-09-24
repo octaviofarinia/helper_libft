@@ -6,7 +6,7 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:57:25 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/22 15:40:52 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/24 19:36:14 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(void)
 		{"ft_memcpy", test_ft_memcpy},
 		{"ft_memmove", test_ft_memmove},
 		{"ft_strlcpy", test_ft_strlcpy},
-		//{"ft_strlcat", test_ft_strlcat},
+		{"ft_strlcat", test_ft_strlcat},
 		{NULL, NULL}
 	};
 

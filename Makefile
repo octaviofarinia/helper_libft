@@ -3,7 +3,7 @@ INCDIR = include
 LIBDIR = libft
 OBJDIR = obj
 BINDIR = bin
-NAME = $(BINDIR)/LibTester
+NAME = ./$(BINDIR)/tester
 OBJS := main.o test_ft_memcpy.o test_ft_memmove.o test_ft_strlcpy.o test_ft_strlcat.o
 OBJS := $(addprefix $(OBJDIR)/, $(OBJS))
 

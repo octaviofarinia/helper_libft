@@ -6,7 +6,7 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:02 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/22 15:39:27 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/24 19:49:03 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,33 @@
 
 #define MAX_LEN 100
 
-// Structure to define a single test case for strlcat
 typedef struct s_strlcat_test_case {
     const char *description;
     char dest_libc[MAX_LEN];
     const char *src;
     size_t size;
-    size_t expected_length; // Expected return value
+    size_t expected_length;
 } t_strlcat_test_case;
 
-// Test Function Implementation
+size_t strlcat(char *dst, const char *src, size_t n) {
+    char *p = dst;
+
+    while (n != 0 && *p != '\0') {
+        p++;
+        n--;
+    }
+    if (n != 0) {
+        for (; --n != 0; p++, src++) {
+            if ((*p = *src) == '\0')
+                return p - dst;
+        }
+        *p = '\0';
+    }
+    return (p - dst) + strlen(src);
+}
+
 int test_ft_strlcat(void)
 {
-    // Define multiple test cases
     t_strlcat_test_case test_cases[] = {
         {
             "Normal concatenation with sufficient size",
@@ -80,24 +94,19 @@ int test_ft_strlcat(void)
     int i = 0;
     while(i < num_cases)
     {
-        // Initialize destination buffers
         memset(test_cases[i].dest_libc, 'X', MAX_LEN - 1);
         test_cases[i].dest_libc[MAX_LEN - 1] = '\0';
 
-        strncpy(test_cases[i].dest_libc, test_cases[i].dest_libc, MAX_LEN - 1); // Already set to 'X's
+        strncpy(test_cases[i].dest_libc, test_cases[i].dest_libc, MAX_LEN - 1);
 
-        // Make a copy for ft_strlcat
         char dest_ft[MAX_LEN];
         strncpy(dest_ft, test_cases[i].dest_libc, MAX_LEN - 1);
         dest_ft[MAX_LEN - 1] = '\0';
 
-        // Perform standard strlcat
         size_t ret_libc = strlcat(test_cases[i].dest_libc, test_cases[i].src, test_cases[i].size);
 
-        // Perform ft_strlcat
         size_t ret_ft = ft_strlcat(dest_ft, test_cases[i].src, test_cases[i].size);
 
-        // Compare return values and destination buffers
         if (ret_libc != ret_ft || strcmp(test_cases[i].dest_libc, dest_ft) != 0)
         {
             printf(COLOR_RED "Test ft_strlcat FAILED: %s\n" COLOR_RESET, test_cases[i].description);

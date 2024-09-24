@@ -6,7 +6,7 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:41:19 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/22 14:18:55 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:08:33 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,17 @@
 
 #define MAX_LEN 100
 
-// Structure to define a single test case for memcpy
 typedef struct s_memcpy_test_case {
-    const char *description;    // Description of the test case
-    const char *source;         // Source string
-    size_t n;                   // Number of bytes to copy
-    const char *initial_dest;   // Initial content of destination
+    const char *description;
+    const char *source;
+    size_t n;
+    const char *initial_dest;
 } t_memcpy_test_case;
 
-// Function Prototype
 int test_ft_memcpy(void);
 
-// Test Function Implementation
 int test_ft_memcpy(void)
 {
-    // Define multiple test cases
     t_memcpy_test_case test_cases[] = {
         {
             "Basic copy",
@@ -47,7 +43,7 @@ int test_ft_memcpy(void)
         {
             "Copy entire buffer",
             "Full buffer copy",
-            MAX_LEN - 1,  // Copy up to the buffer size minus null terminator
+            MAX_LEN - 1,
             "Destination Buffer with initial data"
         },
         {
@@ -71,35 +67,30 @@ int test_ft_memcpy(void)
         {
             "Source contains null bytes",
             "Null\0Byte\0Test",
-            14,  // Including the null bytes
+            14,
             "Destination with initial data"
         }
     };
     
     int num_cases = sizeof(test_cases) / sizeof(test_cases[0]);
-    int fail = 0; // Flag to indicate if any test case fails
+    int fail = 0;
 
 	int i = 0;
     while(i < num_cases)
     {
-        // Allocate and initialize destination buffers
         char dest_libc[MAX_LEN];
         char dest_ft[MAX_LEN];
 
-        // Initialize destinations with the initial_dest string
         strncpy(dest_libc, test_cases[i].initial_dest, MAX_LEN - 1);
-        dest_libc[MAX_LEN - 1] = '\0'; // Ensure null-termination
+        dest_libc[MAX_LEN - 1] = '\0';
 
         strncpy(dest_ft, test_cases[i].initial_dest, MAX_LEN - 1);
-        dest_ft[MAX_LEN - 1] = '\0'; // Ensure null-termination
+        dest_ft[MAX_LEN - 1] = '\0';
 
-        // Perform standard memcpy
         memcpy(dest_libc, test_cases[i].source, test_cases[i].n);
 
-        // Perform ft_memcpy
         ft_memcpy(dest_ft, test_cases[i].source, test_cases[i].n);
 
-        // Compare the results
         if (memcmp(dest_libc, dest_ft, MAX_LEN) != 0)
         {
             printf(COLOR_RED "Test ft_memcpy FAILED: %s\n" COLOR_RESET, test_cases[i].description);
@@ -108,7 +99,7 @@ int test_ft_memcpy(void)
             printf("\tAfter memcpy:   \"%s\"\n", dest_libc);
             printf("\tAfter ft_memcpy:\"%s\"\n", dest_ft);
             printf("\n");
-            fail = 1; // Mark as failed
+            fail = 1;
         }
         else
         {
@@ -117,6 +108,5 @@ int test_ft_memcpy(void)
 		i++;
     }
 
-    // Return 1 if any test case failed, else 0
     return fail ? 1 : 0;
 }

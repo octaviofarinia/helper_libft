@@ -6,7 +6,7 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:11:34 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/22 15:22:14 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:09:53 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,30 @@
 
 #define MAX_LEN 100
 
-// Structure to define a single test case for strlcpy
 typedef struct s_strlcpy_test_case {
     const char *description;
     const char *source;
     char dest_libc[MAX_LEN];
     char dest_ft[MAX_LEN];
     size_t size;
-    size_t expected_length; // Expected return value
+    size_t expected_length;
 } t_strlcpy_test_case;
 
-// Test Function Implementation
+size_t strlcpy(char *dst, const char *src, size_t n) {
+    char *p = dst;
+
+    if (n != 0) {
+        for (; --n != 0; p++, src++) {
+            if ((*p = *src) == '\0')
+                return p - dst;
+        }
+        *p = '\0';
+    }
+    return (p - dst) + strlen(src);
+}
+
 int test_ft_strlcpy(void)
 {
-    // Define multiple test cases
     t_strlcpy_test_case test_cases[] = {
         {
             "Normal copy with sufficient size",
@@ -87,20 +97,16 @@ int test_ft_strlcpy(void)
     int i = 0;
     while(i < num_cases)
     {
-        // Initialize destination buffers
         memset(test_cases[i].dest_libc, 'X', MAX_LEN - 1);
         test_cases[i].dest_libc[MAX_LEN - 1] = '\0';
 
         memset(test_cases[i].dest_ft, 'X', MAX_LEN - 1);
         test_cases[i].dest_ft[MAX_LEN - 1] = '\0';
 
-        // Perform standard strlcpy
         size_t ret_libc = strlcpy(test_cases[i].dest_libc, test_cases[i].source, test_cases[i].size);
 
-        // Perform ft_strlcpy
         size_t ret_ft = ft_strlcpy(test_cases[i].dest_ft, test_cases[i].source, test_cases[i].size);
 
-        // Compare return values and destination buffers
         if (ret_libc != ret_ft || strcmp(test_cases[i].dest_libc, test_cases[i].dest_ft) != 0)
         {
             printf(COLOR_RED "Test ft_strlcpy FAILED: %s\n" COLOR_RESET, test_cases[i].description);
