@@ -6,7 +6,7 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 15:51:44 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/22 15:38:34 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:58:13 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,11 @@ int test_ft_memcpy(void);
 int test_ft_memmove(void);
 int test_ft_strlcpy(void);
 int test_ft_strlcat(void);
+int test_ft_isalpha(void);
+int test_ft_isalnum(void);
+int test_ft_isascii(void);
+int test_ft_isprint(void);
+int test_ft_toupper(void);
+int test_ft_tolower(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ofarina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 18:57:25 by ofarina           #+#    #+#             */
-/*   Updated: 2024/09/24 19:36:14 by ofarina          ###   ########.fr       */
+/*   Updated: 2024/09/24 21:03:03 by ofarina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int main(void)
 		{"ft_memmove", test_ft_memmove},
 		{"ft_strlcpy", test_ft_strlcpy},
 		{"ft_strlcat", test_ft_strlcat},
+		{"ft_isalpha", test_ft_isalpha},
+		{"ft_isalnum", test_ft_isalnum},
+		{"ft_isascii", test_ft_isascii},
+		{"ft_isprint", test_ft_isprint},
+		{"ft_tolower", test_ft_tolower},
+		{"ft_toupper", test_ft_toupper},
 		{NULL, NULL}
 	};
 
